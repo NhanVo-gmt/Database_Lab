@@ -24,7 +24,7 @@ CREATE TABLE Staff (
 );
 
 CREATE TABLE Book (
-	ISBN int primary key,
+	ISBN bigint primary key,
     Title varchar(40) NOT NULL,
     Price_code varchar(40) NOT NULL,
     Category varchar(40) NOT NULL,
@@ -111,13 +111,13 @@ CREATE TABLE Notification (
 
 CREATE TABLE KeepTrackInfo (
 	Noti_ID int primary key,
-    ISBN int not null,
+    ISBN bigint not null,
     foreign key(Noti_ID) references notification(Noti_ID) on delete cascade,
     foreign key(ISBN) references book(ISBN) on delete cascade
 );
 
 CREATE TABLE WrittenBy (
-	Book_ID int,
+	Book_ID bigint,
     Author_ID int,
     primary key(Book_ID, Author_ID),
     foreign key(Book_ID) references book(ISBN) on delete cascade,
