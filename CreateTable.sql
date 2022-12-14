@@ -1,3 +1,5 @@
+-- drop database Assigment;
+
 create database Assigment;
 
 use Assigment;
@@ -43,15 +45,17 @@ CREATE TABLE Author (
 );
 
 CREATE TABLE LoanBill (
-	Loan_Bill_ID int primary key,
+	Loan_Bill_ID int primary key auto_increment,
     Staff_ID int NOT NULL,
     Customer_ID int NOT NULL,
+    Book_ID bigint,
     foreign key(Staff_ID) references staff(Staff_ID) on delete cascade,
-    foreign key(Customer_ID) references customer(Customer_ID) on delete cascade
+    foreign key(Customer_ID) references customer(Customer_ID) on delete cascade,
+    foreign key(Book_ID) references book(ISBN) on delete cascade
 );
 
 CREATE TABLE ReturnBill (
-	Return_Bill_ID int primary key,
+	Return_Bill_ID int primary key auto_increment,
     Return_date date not null,
     Loan_Bill_ID int not null,
     Staff_ID int not null,
@@ -76,7 +80,7 @@ CREATE TABLE ReadInLibraryBill (
 );
 
 CREATE TABLE Payment (
-	Payment_ID int primary key,
+	Payment_ID int primary key auto_increment,
     Payment_date date not null,
     Amount_of_money float not null,
     Customer_ID int not null,
@@ -84,7 +88,7 @@ CREATE TABLE Payment (
 );
 
 CREATE TABLE FineRecord (
-	Fine_ID int primary key,
+	Fine_ID int primary key auto_increment,
     Number_of_date_late int not null,
     Return_Bill_ID int not null,
     foreign key(Return_Bill_ID) references returnbill(Return_Bill_ID)
@@ -105,7 +109,7 @@ CREATE TABLE BorrowHomePayment (
 );
 
 CREATE TABLE Notification (
-	Noti_ID int primary key,
+	Noti_ID int primary key auto_increment,
     Status bool
 );
 
