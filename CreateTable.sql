@@ -114,14 +114,9 @@ CREATE TABLE Notification (
 	Noti_ID int primary key auto_increment,
     Status bool,
     Customer_ID int not null,
-    foreign key(Customer_ID) references customer(Customer_ID) on delete cascade
-);
-
-CREATE TABLE KeepTrackInfo (
-	Noti_ID int primary key,
     ISBN bigint not null,
-    foreign key(Noti_ID) references notification(Noti_ID) on delete cascade,
-    foreign key(ISBN) references book(ISBN) on delete cascade
+    foreign key(ISBN) references book(ISBN) on delete cascade,
+    foreign key(Customer_ID) references customer(Customer_ID) on delete cascade
 );
 
 CREATE TABLE WrittenBy (
