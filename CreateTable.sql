@@ -112,7 +112,9 @@ CREATE TABLE BorrowHomePayment (
 
 CREATE TABLE Notification (
 	Noti_ID int primary key auto_increment,
-    Status bool
+    Status bool,
+    Customer_ID int not null,
+    foreign key(Customer_ID) references customer(Customer_ID) on delete cascade
 );
 
 CREATE TABLE KeepTrackInfo (
