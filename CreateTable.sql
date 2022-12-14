@@ -2,6 +2,8 @@
 
 create database Assigment;
 
+SET time_zone ='+07:00';
+
 use Assigment;
 
 CREATE TABLE Customer (
@@ -56,7 +58,7 @@ CREATE TABLE LoanBill (
 
 CREATE TABLE ReturnBill (
 	Return_Bill_ID int primary key auto_increment,
-    Return_date date not null,
+    Return_date timestamp not null default current_timestamp,
     Loan_Bill_ID int not null,
     Staff_ID int not null,
     Customer_ID int not null,
@@ -67,21 +69,21 @@ CREATE TABLE ReturnBill (
 
 CREATE TABLE BorrowHomeBill (
 	Loan_Bill_ID int primary key,
-    Borrow_date date not null,
-    Due_date date not null,
+    Borrow_time timestamp not null default current_timestamp,
+    Due_time timestamp not null,
     foreign key(Loan_Bill_ID) references loanbill(Loan_Bill_ID) on delete cascade
 );
 
 CREATE TABLE ReadInLibraryBill (
 	Loan_Bill_ID int primary key,
-    Borrow_time date not null,
-    Due_time date not null,
+    Borrow_time timestamp not null default current_timestamp,
+    Due_time timestamp not null,
     foreign key(Loan_Bill_ID) references loanbill(Loan_Bill_ID) on delete cascade
 );
 
 CREATE TABLE Payment (
 	Payment_ID int primary key auto_increment,
-    Payment_date date not null,
+    Payment_time timestamp not null default current_timestamp,
     Amount_of_money float not null,
     Customer_ID int not null,
     foreign key(Customer_ID) references customer(Customer_ID) on delete cascade
