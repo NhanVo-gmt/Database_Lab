@@ -53,17 +53,24 @@ create procedure create_return_bill(
 in staff_id int, in customer_id int, in loan_bill_id int
 )
 begin
-	declare start_date timestamp;
+	declare due_date timestamp;
     declare return_id int default 0;
+    declare number_of_date_late int default 0;
 
     insert into returnbill(return_date, Loan_Bill_ID, Staff_ID, Customer_ID) values (current_timestamp(), loan_bill_id, staff_id, customer_id);
 
 	-- Get the due_time from selected loan bill id
-    select due_time into start_date from borrowhomebill b where b.loan_bill_id = loan_bill_id;
+    select due_time into due_date from borrowhomebill b where b.loan_bill_id = loan_bill_id;
     
     -- Get the newest return_bill_id
     select Return_Bill_ID into return_id from returnbill r where r.Return_Bill_ID = (SELECT MAX(Return_Bill_ID) from returnbill);
-	call create_fine_record(date(start_date), current_date(), return_id);
+    
+    -- Get number of days late
+    select(datediff(current_date(), due_date)) into number_of_date_late; 
+    
+    if number_of_date_late > 0 then
+		call create_fine_record(number_of_date_late, return_id);
+	end if;
 end //
 
 DELIMITER ;
@@ -71,13 +78,9 @@ DELIMITER ;
 -- procedure for create fine record
 DELIMITER //
 create procedure create_fine_record(
-in due_date date, in return_date date, in return_bill_id int
+in number_of_date_late int, in return_bill_id int
 )
 begin
-	declare number_of_date_late int default 0;
-    
-    -- Get the number of date late
-	select(datediff(return_date, due_date)) into number_of_date_late; 
 	insert into finerecord(Number_of_date_late, Return_Bill_ID) values (number_of_date_late, return_bill_id);
 end //
 
@@ -85,7 +88,12 @@ DELIMITER ;
 
 -- for testing
 insert into loanbill values (1, 1, 2051535, 9781638257945);
+insert into loanbill values (2, 1, 2051535, 9782113180045);
 insert into borrowhomebill values (1, '2002-06-06', '2002-06-06'); 
+insert into borrowhomebill values (2, '2002-06-06', '2023-06-06'); 
 insert into returnbill values (1, current_timestamp(), 1, 1, 2051535); 
+insert into returnbill values (2, current_timestamp(), 1, 1, 2051535); 
 
-call create_return_bill(1, 2051535, 1)
+call create_return_bill(1, 2051535, 1);
+call create_return_bill(1, 2051535, 2);
+select * from finerecord;
