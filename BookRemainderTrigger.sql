@@ -25,7 +25,11 @@ create trigger increase_book_remainder_from_returnbill
 after insert
 on returnbill for each row
 begin
-	update book_remainder br set br.Number_of_book_remaining = br.Number_of_book_remaining + 1 where br.isbn = 
-		(select Book_ID from loanbill where Loan_Bill_ID = NEW.Loan_Bill_ID);
+	declare return_isbn bigint default 0;
+    select Book_ID into return_isbn from loanbill where Loan_Bill_ID = NEW.Loan_Bill_ID;
+	
+    update book_remainder br set br.Number_of_book_remaining = br.Number_of_book_remaining + 1 where br.isbn = return_isbn;
+
+	call update_noti(return_isbn);
 end//
 	
