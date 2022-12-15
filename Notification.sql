@@ -25,10 +25,3 @@ begin
 end //
 
 DELIMITER ;
-
--- call procedure example
-call create_noti(2053163,9783010907299);
-call create_noti(2053135,9789974344760);
-call create_noti(2053290,9782113180045);
-
-select * from notification

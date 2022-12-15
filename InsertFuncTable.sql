@@ -11,3 +11,8 @@ call create_readinlibrary_bill(2, 2053213, 9788667995035);
 call create_readinlibrary_bill(1, 2053642, 9788264825757);
 call create_readinlibrary_bill(2, 2053213, 9783010907299);
 call create_readinlibrary_bill(3, 2053290, 9783010907299);
+
+-- Create Notification
+call create_noti(2053163,9783010907299);
+call create_noti(2053135,9789974344760);
+call create_noti(2053290,9782113180045);
