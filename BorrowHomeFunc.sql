@@ -71,6 +71,7 @@ begin
     
     if number_of_date_late > 0 then
 		call create_fine_record(number_of_date_late, return_id);
+        call create_payment(number_of_date_late, customer_id);
 	end if;
 end //
 
@@ -87,6 +88,21 @@ end //
 
 DELIMITER ;
 
+DELIMITER ;
+
+-- procedure for create fine record
+DELIMITER //
+create procedure create_payment(
+in number_of_date_late int, in customer_id int
+)
+begin
+	declare money_pay float;
+	select (number_of_date_late * 0.5) into money_pay;
+	insert into payment(Payment_time, Amount_of_money, Customer_ID) values (current_timestamp(), money_pay, customer_id);
+end //
+
+DELIMITER ;
+
 -- for testing
 insert into loanbill values (null, 1, 2051535, 9781638257945);
 insert into borrowhomebill values (last_insert_id(), '2002-06-06', '2002-06-06');
@@ -99,3 +115,6 @@ call create_return_bill(1, 2051535, last_insert_id());
 select * from loanbill;
 select * from borrowhomebill;
 select * from finerecord;
+select * from payment;
+
+
