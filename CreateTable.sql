@@ -39,6 +39,12 @@ CREATE TABLE Book (
     Foreign key(Book_Staff_ID) references staff(Staff_ID) on delete set null
 );
 
+CREATE TABLE Book_remainder (
+	ISBN bigint primary key,
+    Number_of_book_remaining int, 
+    Foreign key(ISBN) references Book(ISBN) on delete cascade
+);
+
 CREATE TABLE Author (
 	Author_ID int primary key,
     First_name varchar(40) NOT NULL,
