@@ -105,12 +105,24 @@ DELIMITER ;
 
 -- for testing
 insert into loanbill values (null, 1, 2051535, 9781638257945);
-insert into borrowhomebill values (last_insert_id(), '2002-06-06', '2002-06-06');
+insert into borrowhomebill values (last_insert_id(), '2022-06-06', '2002-06-13');
 call create_return_bill(1, 2051535, last_insert_id());
 
 insert into loanbill values (null, 1, 2051535, 9782113180045);
-insert into borrowhomebill values (last_insert_id(), '2002-06-06', '2023-06-06'); 
+insert into borrowhomebill values (last_insert_id(), '2022-08-21', '2022-09-05'); 
 call create_return_bill(1, 2051535, last_insert_id());
+
+insert into loanbill values (null, 2, 2052580, 9787830516379);
+insert into borrowhomebill values (last_insert_id(), '2022-10-24', '2022-11-10'); 
+call create_return_bill(2, 2052580, last_insert_id());
+
+insert into loanbill values (null, 3, 2052858, 9782113180045);
+insert into borrowhomebill values (last_insert_id(), '2022-11-01', '2022-11-21'); 
+call create_return_bill(3, 2052858, last_insert_id());
+
+insert into loanbill values (null, 3, 2052858, 9785151051393);
+insert into borrowhomebill values (last_insert_id(), '2022-12-01', '2022-12-21'); 
+call create_return_bill(3, 2052858, last_insert_id());
 
 select * from loanbill;
 select * from borrowhomebill;
