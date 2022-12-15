@@ -1,6 +1,6 @@
--- drop database Assigment;
+-- drop database Library;
 
-create database Assigment;
+create database Library;
 
 SET time_zone ='+07:00';
 
