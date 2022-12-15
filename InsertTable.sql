@@ -105,4 +105,4 @@ insert into readinlibrarybill values (last_insert_id(), '2012-03-12', '2012-03-1
 insert into loanbill values (null, 2, 2053213, 9783010907299);
 insert into readinlibrarybill values (last_insert_id(), '2012-10-12', '2012-10-12');
 insert into loanbill values (null, 3, 2053290, 9783010907299);
-insert into readinlibrarybill values (last_insert_id(), '2012-26-12', '2012-26-12');
+insert into readinlibrarybill values (last_insert_id(), '2012-12-12', '2012-12-12');
