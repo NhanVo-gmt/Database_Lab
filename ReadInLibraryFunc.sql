@@ -16,6 +16,7 @@ DELIMITER ;
 
 -- call procedure example
 call create_readinlibrary_bill(1,2053163,9781638257945);
+-- call create_readinlibrary_bill(1,2053163,9788667995035);
 
 -- for testing
 select * from loanbill;

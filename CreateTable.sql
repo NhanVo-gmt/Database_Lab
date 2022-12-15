@@ -1,4 +1,4 @@
--- drop database Assigment;
+drop database Assigment;
 
 create database Assigment;
 

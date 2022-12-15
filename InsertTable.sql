@@ -80,3 +80,5 @@ INSERT INTO WrittenBy VALUES(9785151051393, 986);
 INSERT INTO WrittenBy VALUES(9788264825757, 986);
 
 select Author.First_name, Author.Last_name, Book.Title from Author, Book, WrittenBy Where WrittenBy.Book_ID = Book.ISBN And WrittenBy.Author_ID = Author.Author_ID;
+
+select * from book_remainder;

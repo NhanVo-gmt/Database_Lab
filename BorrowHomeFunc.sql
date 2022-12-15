@@ -45,6 +45,7 @@ call create_borrowhome_bill(1,2053135,9789974344760);
 -- for testing
 select * from loanbill;
 select * from borrowhomebill;
+
 <<<<<<< HEAD
 
 -- procedure for create return bill
@@ -87,13 +88,14 @@ end //
 DELIMITER ;
 
 -- for testing
-insert into loanbill values (1, 1, 2051535, 9781638257945);
-insert into loanbill values (2, 1, 2051535, 9782113180045);
-insert into borrowhomebill values (1, '2002-06-06', '2002-06-06'); 
-insert into borrowhomebill values (2, '2002-06-06', '2023-06-06'); 
-insert into returnbill values (1, current_timestamp(), 1, 1, 2051535); 
-insert into returnbill values (2, current_timestamp(), 1, 1, 2051535); 
+insert into loanbill values (null, 1, 2051535, 9781638257945);
+insert into borrowhomebill values (last_insert_id(), '2002-06-06', '2002-06-06');
+call create_return_bill(1, 2051535, last_insert_id());
 
-call create_return_bill(1, 2051535, 1);
-call create_return_bill(1, 2051535, 2);
+insert into loanbill values (null, 1, 2051535, 9782113180045);
+insert into borrowhomebill values (last_insert_id(), '2002-06-06', '2023-06-06'); 
+call create_return_bill(1, 2051535, last_insert_id());
+
+select * from loanbill;
+select * from borrowhomebill;
 select * from finerecord;
