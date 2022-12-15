@@ -104,7 +104,7 @@ CREATE TABLE FineRecord (
 
 CREATE TABLE FinePayment (
 	Payment_ID int primary key,
-    Fine_ID int not null,
+    Fine_ID int auto_increment,
     foreign key(Payment_ID) references payment(Payment_ID),
     foreign key(Fine_ID) references finerecord(Fine_ID)
 );
