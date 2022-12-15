@@ -4,7 +4,7 @@ create database Library;
 
 SET time_zone ='+07:00';
 
-use Assigment;
+use Library;
 
 CREATE TABLE Customer (
 	Customer_id int primary key,
