@@ -4,10 +4,10 @@ after insert
 on book for each row
 begin
 	insert into book_remainder values (NEW.ISBN, NEW.Number_of_copies);
-end;
+end//
 delimiter;
 
-delimiter //
+delimiter // 
 create trigger decrease_book_remainder_from_loanbill
 after insert
 on loanbill for each row
@@ -17,16 +17,15 @@ begin
 	if number_of_book_now > 0 then
 		update book_remainder br set br.Number_of_book_remaining = br.Number_of_book_remaining - 1 where br.isbn = NEW.Book_ID;
 	end if;
-end;
+end//
 delimiter;
 
-delimiter //
+delimiter // 
 create trigger increase_book_remainder_from_returnbill
 after insert
 on returnbill for each row
 begin
 	update book_remainder br set br.Number_of_book_remaining = br.Number_of_book_remaining + 1 where br.isbn = 
 		(select Book_ID from loanbill where Loan_Bill_ID = NEW.Loan_Bill_ID);
-end;
-delimiter;
+end//
 	

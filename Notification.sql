@@ -8,3 +8,13 @@ begin
 end //
 
 DELIMITER ;
+
+DELIMITER //
+create procedure update_noti(
+in in_isbn bigint
+)
+begin
+	update notification set Status = true where Status = false and ISBN = in_isbn limit 1;
+end //
+
+DELIMITER ;
