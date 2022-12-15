@@ -82,3 +82,27 @@ INSERT INTO WrittenBy VALUES(9788264825757, 986);
 select Author.First_name, Author.Last_name, Book.Title from Author, Book, WrittenBy Where WrittenBy.Book_ID = Book.ISBN And WrittenBy.Author_ID = Author.Author_ID;
 
 select * from book_remainder;
+
+-- Borrow Home Bill
+insert into loanbill values (null, 2, 2051535, 9781638257945);
+insert into borrowhomebill values (last_insert_id(), '2002-06-06', '2002-06-13');
+insert into loanbill values (null, 1, 2052580, 9787830516379);
+insert into borrowhomebill values (last_insert_id(), '2002-07-12', '2002-08-13');
+insert into loanbill values (null, 3, 2052858, 9788606352854);
+insert into borrowhomebill values (last_insert_id(), '2012-03-12', '2012-04-05');
+insert into loanbill values (null, 2, 2053642, 9785457731310);
+insert into borrowhomebill values (last_insert_id(), '2012-12-15', '2012-12-29');
+insert into loanbill values (null, 3, 2052858, 9785151051393);
+insert into borrowhomebill values (last_insert_id(), '2013-05-02', '2012-05-20');
+
+-- Read in library Bill
+insert into loanbill values (null, 1, 2051535, 9786509130490);
+insert into readinlibrarybill values (last_insert_id(), '2012-06-06', '2012-06-06');
+insert into loanbill values (null, 2, 2053213, 9788667995035);
+insert into readinlibrarybill values (last_insert_id(), '2012-07-08', '2012-07-12');
+insert into loanbill values (null, 1, 2053642, 9788264825757);
+insert into readinlibrarybill values (last_insert_id(), '2012-03-12', '2012-03-12');
+insert into loanbill values (null, 2, 2053213, 9783010907299);
+insert into readinlibrarybill values (last_insert_id(), '2012-10-12', '2012-10-12');
+insert into loanbill values (null, 3, 2053290, 9783010907299);
+insert into readinlibrarybill values (last_insert_id(), '2012-26-12', '2012-26-12');
